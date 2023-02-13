@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 const Header = () => {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    if (localStorage.getItem("user") === null) {
+      setUser(null);
+    } else {
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    toast.success("Logged Out SuccessFully");
+    setUser(null);
+  };
   return (
     <>
       <div className="ekit-template-content-markup ekit-template-content-header ekit-template-content-theme-support">
@@ -105,7 +121,7 @@ const Header = () => {
                                       data-vertical-menu="750px"
                                     >
                                       <a
-                                        href="index.html"
+                                        href="/"
                                         className="ekit-menu-nav-link"
                                       >
                                         Home
@@ -117,12 +133,44 @@ const Header = () => {
                                       data-vertical-menu="750px"
                                     >
                                       <a
-                                        href="../about/index.html"
+                                        href="/About"
                                         className="ekit-menu-nav-link"
                                       >
                                         About
                                       </a>
                                     </li>
+
+                                    <li
+                                      id="menu-item-592"
+                                      className="menu-item menu-item-type-post_type menu-item-object-page menu-item-592 nav-item elementskit-mobile-builder-content"
+                                      data-vertical-menu="750px"
+                                    >
+                                      <a
+                                        href="/Contact"
+                                        className="ekit-menu-nav-link"
+                                      >
+                                        Contact US
+                                      </a>
+                                    </li>
+                                    {user !== null ? (
+                                      <>
+                                        <li
+                                          id="menu-item-592"
+                                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-592 nav-item elementskit-mobile-builder-content"
+                                          data-vertical-menu="750px"
+                                        >
+                                          <a
+                                            href="/Insurance"
+                                            className="ekit-menu-nav-link"
+                                          >
+                                            Get Insurance
+                                          </a>
+                                        </li>
+                                      </>
+                                    ) : (
+                                      <></>
+                                    )}
+
                                     {/* <li
                                       id="menu-item-602"
                                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-602 nav-item elementskit-dropdown-has relative_position elementskit-dropdown-menu-default_width elementskit-mobile-builder-content"
@@ -210,21 +258,44 @@ const Header = () => {
                             data-element_type="widget"
                             data-widget_type="button.default"
                           >
-                            <div className="elementor-widget-container">
-                              <div className="elementor-button-wrapper">
-                                <a
-                                  href="#/"
-                                  className="elementor-button-link elementor-button elementor-size-sm"
-                                  role="button"
-                                >
-                                  <span className="elementor-button-content-wrapper">
-                                    <span className="elementor-button-text">
-                                      Login
-                                    </span>
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
+                            {user === null ? (
+                              <>
+                                <div className="elementor-widget-container">
+                                  <div className="elementor-button-wrapper">
+                                    <a
+                                      href="/login"
+                                      className="elementor-button-link elementor-button elementor-size-sm"
+                                      role="button"
+                                    >
+                                      <span className="elementor-button-content-wrapper">
+                                        <span className="elementor-button-text">
+                                          Login
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div className="elementor-widget-container">
+                                  <div className="elementor-button-wrapper">
+                                    <a
+                                      href="#/"
+                                      className="elementor-button-link elementor-button elementor-size-sm"
+                                      role="button"
+                                      onClick={handleLogout}
+                                    >
+                                      <span className="elementor-button-content-wrapper">
+                                        <span className="elementor-button-text">
+                                          Logout
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -236,6 +307,7 @@ const Header = () => {
           </section>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

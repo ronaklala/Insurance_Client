@@ -5,6 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./Components/NotFound";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Insurance from "./Components/Insurance";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,6 +17,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/Insurance" element={<Insurance />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
