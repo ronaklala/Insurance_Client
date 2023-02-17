@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import Footer from "../Layouts/Footer";
 import Header from "../Layouts/Header";
+import { loginSuccess } from "../reducers";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -20,6 +22,8 @@ const Login = () => {
     });
   };
 
+  const reduxDispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.email === "" || user.password === "") {
@@ -30,6 +34,16 @@ const Login = () => {
         .post("http://localhost:5000/client/user/login", user)
         .then((res) => {
           window.localStorage.setItem("user", JSON.stringify(res.data[0]));
+          reduxDispatch(
+            loginSuccess({
+              name: res.data[0].name,
+              email: res.data[0].email,
+              id: res.data[0]._id,
+              phone: res.data[0].phone,
+              city: res.data[0].city,
+            })
+          );
+
           toast.success("Logged in Successfully");
           setTimeout(() => {
             window.location.href = "/";

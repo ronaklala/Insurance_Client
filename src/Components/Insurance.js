@@ -238,9 +238,15 @@ const Insurance = () => {
                                             display: "flex",
                                           }}
                                         >
-                                          <button className="btn btn-primary">
-                                            View
-                                          </button>
+                                          <a
+                                            href={
+                                              "/Agent/" + a._id + "/" + a.name
+                                            }
+                                          >
+                                            <button className="btn btn-primary">
+                                              View
+                                            </button>
+                                          </a>
                                         </div>
                                       </div>
                                     </div>

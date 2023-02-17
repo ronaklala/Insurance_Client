@@ -166,6 +166,19 @@ const Header = () => {
                                             Get Insurance
                                           </a>
                                         </li>
+
+                                        <li
+                                          id="menu-item-592"
+                                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-592 nav-item elementskit-mobile-builder-content"
+                                          data-vertical-menu="750px"
+                                        >
+                                          <a
+                                            href="/Applications"
+                                            className="ekit-menu-nav-link"
+                                          >
+                                            Applications
+                                          </a>
+                                        </li>
                                       </>
                                     ) : (
                                       <></>

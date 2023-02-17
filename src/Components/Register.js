@@ -44,7 +44,11 @@ const Register = () => {
           }, 1000);
         })
         .catch((err) => {
-          toast.error("Internal Server Error");
+          if (err.response.status === 403) {
+            toast.error("Email Address Already Exists");
+          } else {
+            toast.error("Internal Server Error");
+          }
         });
     }
   };
