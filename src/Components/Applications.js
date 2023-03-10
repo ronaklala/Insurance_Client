@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Footer from "../Layouts/Footer";
 import Header from "../Layouts/Header";

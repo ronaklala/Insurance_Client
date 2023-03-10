@@ -231,7 +231,13 @@ const SingleAgent = () => {
                                   data-widget_type="text-editor.default"
                                 >
                                   <div className="elementor-widget-container">
-                                    <p>Yes</p>{" "}
+                                    <p>
+                                      {agent.is_verified === 1 ? (
+                                        <>Yes</>
+                                      ) : (
+                                        <>No / Pending</>
+                                      )}
+                                    </p>{" "}
                                   </div>
                                 </div>
 
@@ -362,22 +368,6 @@ const SingleAgent = () => {
                                     <div className="elementor-spacer">
                                       <div className="elementor-spacer-inner" />
                                     </div>
-                                  </div>
-                                </div>
-                                <div
-                                  className="elementor-element elementor-element-0f7d9b7 elementor-widget__width-auto de_scroll_animation_no elementor-widget elementor-widget-heading"
-                                  data-id="0f7d9b7"
-                                  data-element_type="widget"
-                                  data-widget_type="heading.default"
-                                >
-                                  <div className="elementor-widget-container">
-                                    <button
-                                      onClick={() => {
-                                        ContactAgent(user._id, agent._id);
-                                      }}
-                                    >
-                                      Contact Now
-                                    </button>
                                   </div>
                                 </div>
                               </div>

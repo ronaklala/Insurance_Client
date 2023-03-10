@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import Footer from "../Layouts/Footer";
 import Header from "../Layouts/Header";
 
@@ -35,12 +36,20 @@ const Insurance = () => {
           "/" +
           type +
           "/" +
-          user.city
+          user.city +
+          "/" +
+          user._id
       )
       .then((res) => {
-        setAgents(res.data);
+        toast.success("Work Alert Sent Successfully");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 403) {
+          toast.error("No Agents Found For Your City");
+        } else if (err.response.status === 405) {
+          toast.error("You have applied for this Agent Request");
+        }
+      });
   };
 
   return (
@@ -56,7 +65,7 @@ const Insurance = () => {
         >
           <div className="elementor-container elementor-column-gap-default">
             <div
-              className="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ace4896"
+              className="elementor-column  elementor-top-column elementor-element elementor-element-ace4896"
               data-id="ace4896"
               data-element_type="column"
             >
@@ -74,7 +83,7 @@ const Insurance = () => {
             </div>
             &nbsp; &nbsp;
             <div
-              className="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ace4896"
+              className="elementor-column  elementor-top-column elementor-element elementor-element-ace4896"
               data-id="ace4896"
               data-element_type="column"
             >
@@ -116,7 +125,7 @@ const Insurance = () => {
           >
             <div className="elementor-container elementor-column-gap-default">
               <div
-                className="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-80a2072"
+                className="elementor-column  elementor-top-column elementor-element elementor-element-80a2072"
                 data-id="80a2072"
                 data-element_type="column"
               >
