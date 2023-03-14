@@ -5,6 +5,12 @@ import Footer from "../Layouts/Footer";
 import Header from "../Layouts/Header";
 
 const Insurance = () => {
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
   const [cat, setCat] = useState();
 
   const [type, setType] = useState();
@@ -40,7 +46,9 @@ const Insurance = () => {
           "/" +
           user.city +
           "/" +
-          user._id
+          user._id,
+        { data: "Not for your purpose" },
+        axiosConfig
       )
       .then((res) => {
         toast.success("Work Alert Sent Successfully");
