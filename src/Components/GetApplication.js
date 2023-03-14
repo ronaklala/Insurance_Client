@@ -9,7 +9,10 @@ const GetApplication = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/client/user/getApplications/" + props.id)
+      .get(
+        "https://insurance-api-five.vercel.app/client/user/getApplications/" +
+          props.id
+      )
       .then((res) => {
         setApp(res.data);
         setLoading(false);

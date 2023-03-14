@@ -16,10 +16,12 @@ const Insurance = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/client/agents/get").then((res) => {
-      setAgents(res.data);
-      setLoading(false);
-    });
+    axios
+      .get("https://insurance-api-five.vercel.app/client/agents/get")
+      .then((res) => {
+        setAgents(res.data);
+        setLoading(false);
+      });
 
     if (localStorage.getItem("user") === null) {
       window.location.href = "/login";
@@ -31,7 +33,7 @@ const Insurance = () => {
   const handleSearch = () => {
     axios
       .post(
-        "http://localhost:5000/client/agent/get/" +
+        "https://insurance-api-five.vercel.app/client/agent/get/" +
           cat +
           "/" +
           type +

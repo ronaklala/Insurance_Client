@@ -31,7 +31,7 @@ const Login = () => {
       toast.error("Please Fill the Whole Form");
     } else {
       axios
-        .post("http://localhost:5000/client/user/login", user)
+        .post("https://insurance-api-five.vercel.app/client/user/login", user)
         .then((res) => {
           window.localStorage.setItem("user", JSON.stringify(res.data[0]));
           reduxDispatch(

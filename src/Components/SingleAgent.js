@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import Footer from "../Layouts/Footer";
 import Header from "../Layouts/Header";
@@ -18,7 +17,7 @@ const SingleAgent = () => {
     setUser(JSON.parse(localStorage.getItem("user")));
 
     axios
-      .get("http://localhost:5000/client/agent/" + params.id)
+      .get("https://insurance-api-five.vercel.app/client/agent/" + params.id)
       .then((res) => {
         setAgent(res.data);
         setLoading(false);
@@ -28,25 +27,6 @@ const SingleAgent = () => {
         setLoading(false);
       });
   }, [params.id]);
-
-  const ContactAgent = (uid, aid) => {
-    axios
-      .post("http://localhost:5000/client/contact/agent/" + uid + "/" + aid)
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success(
-            "Work Request Succesfully Sent, Please Wait for a confirmation"
-          );
-        }
-      })
-      .catch((err) => {
-        if (err.response.status === 403) {
-          toast.error(
-            "You have already contacted Please Wait or Check Your Email"
-          );
-        }
-      });
-  };
 
   return (
     <>
@@ -795,7 +775,6 @@ const SingleAgent = () => {
         )}
       </div>
       <Footer />
-      <Toaster />
     </>
   );
 };

@@ -35,7 +35,7 @@ const Register = () => {
       toast.error("Please Fill the Whole Form");
     } else {
       axios
-        .post("http://localhost:5000/client/user/add", user)
+        .post("https://insurance-api-five.vercel.app/client/user/add", user)
         .then((res) => {
           toast.success("User Registered");
           window.localStorage.setItem("user", JSON.stringify(user));
@@ -233,6 +233,8 @@ const Register = () => {
                                 name="phone"
                                 onChange={handleChange}
                                 placeholder="+1 (234) 567 890"
+                                min={5}
+                                max={15}
                                 required
                               />
                             </div>
@@ -277,7 +279,7 @@ const Register = () => {
                                 </span>
                               </label>
                               <input
-                                type="email"
+                                type="text"
                                 id="wpforms-506-field_3"
                                 onChange={handleChange}
                                 className="wpforms-field-medium wpforms-field-required"
