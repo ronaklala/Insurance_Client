@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import ApplicationLoader from "./ApplicationLoader";
 
 const GetApplication = (props) => {
   const [applications, setApp] = useState();
 
   const [loading, setLoading] = useState(true);
+
+  const [mailLoader, setMailLoader] = useState(false);
 
   useEffect(() => {
     axios
@@ -38,6 +41,13 @@ const GetApplication = (props) => {
                 data-id="5fcbdf7"
                 data-element_type="section"
               >
+                {mailLoader === true ? (
+                  <>
+                    <h3>Sending Mail..........</h3>
+                  </>
+                ) : (
+                  <></>
+                )}
                 <div className="elementor-container elementor-column-gap-default">
                   {loading === true ? (
                     <>
@@ -105,7 +115,30 @@ const GetApplication = (props) => {
                                         <div className="box-footer disable_hover_button">
                                           {a.result === 1 ? (
                                             <>
-                                              <button>Get Contact Now </button>
+                                              <button
+                                                onClick={() => {
+                                                  setMailLoader(true);
+                                                  axios
+                                                    .post(
+                                                      "http://localhost:5000/get_mail/" +
+                                                        a._id
+                                                    )
+                                                    .then((res) => {
+                                                      toast.success(
+                                                        "Mail Sent Successfully"
+                                                      );
+                                                      setMailLoader(false);
+                                                    })
+                                                    .catch((err) => {
+                                                      toast.error(
+                                                        "Internal Server Error"
+                                                      );
+                                                      setMailLoader(false);
+                                                    });
+                                                }}
+                                              >
+                                                Get Contact Now{" "}
+                                              </button>
                                             </>
                                           ) : (
                                             <></>

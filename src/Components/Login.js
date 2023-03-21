@@ -27,7 +27,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.email === "" || user.password === "") {
-      console.log(user);
       toast.error("Please Fill the Whole Form");
     } else {
       axios
