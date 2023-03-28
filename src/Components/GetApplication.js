@@ -120,7 +120,7 @@ const GetApplication = (props) => {
                                                   setMailLoader(true);
                                                   axios
                                                     .post(
-                                                      "http://localhost:5000/get_mail/" +
+                                                      "https://insurance-api-five.vercel.app/get_mail/" +
                                                         a._id
                                                     )
                                                     .then((res) => {
